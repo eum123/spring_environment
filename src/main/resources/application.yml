@@ -1,0 +1,24 @@
+
+test:
+    key: common
+
+---
+spring:
+    profiles: dev
+    
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/testdb?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&charaterEncoding=utf-8&serverTimezone=UTC
+        username: jin
+        password: 3134
+        
+    jpa:
+        hibernate.ddl-auto: none
+        generate-ddl: true
+        show-sql: true
+
+    
+---
+spring:
+    profiles: prod
+    

@@ -2,6 +2,8 @@ package kr.heungkuklife.eai.statistic.protocol.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,7 +17,7 @@ import lombok.Data;
 public class ChannelInfoEntity {
 	@Id
 	@Column(name = "ID", nullable = false)
-	private int id;
+	private Long id;
 	
 	@JsonProperty
 	@Column(name = "HDR_REQ_SYS_ID", nullable = true)
@@ -33,7 +35,7 @@ public class ChannelInfoEntity {
 		
 	}
 	
-	public ChannelInfoEntity(int id, String channelId, String bocId, String timestamp) {
+	public ChannelInfoEntity(Long id, String channelId, String bocId, String timestamp) {
 		this.id = id;
 		this.channelId = channelId;
 		this.bocId = bocId;

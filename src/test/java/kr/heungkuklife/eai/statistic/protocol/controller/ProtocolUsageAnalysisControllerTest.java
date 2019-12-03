@@ -7,27 +7,30 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import kr.heungkuklife.eai.statistic.protocol.service.ChannelInfoService;
 
 
-@ExtendWith(SpringExtension.class)
-@WebMvcTest(controllers = ProtocolUsageAnalysisController.class)
+@RunWith(SpringRunner.class)
+@WebMvcTest(ProtocolUsageAnalysisController.class)
 @ActiveProfiles("dev")
 public class ProtocolUsageAnalysisControllerTest {
 
 	@Autowired(required=true)
 	private MockMvc mockMvc;
-
-
+	
+	@MockBean
+	private ChannelInfoService service;
+	
+	
 	@Test
 	public void analysisChannelTest() throws Exception {
 		
@@ -36,5 +39,6 @@ public class ProtocolUsageAnalysisControllerTest {
 	
 		mockMvc.perform(get("/analysis/channels").param("bocid", "111"))
 			.andDo(print()).andExpect(status().isOk());
+		
 	}
 }

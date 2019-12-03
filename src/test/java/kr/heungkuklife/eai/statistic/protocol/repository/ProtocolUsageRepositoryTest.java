@@ -27,7 +27,7 @@ public class ProtocolUsageRepositoryTest {
 	public void test() {
 		assertEquals(0, repository.count());
 		
-		ChannelInfoEntity e = new ChannelInfoEntity(1, "HKCALL", "BOC_ID_1", "2019111111");
+		ChannelInfoEntity e = new ChannelInfoEntity(1L, "HKCALL", "BOC_ID_1", "2019111111");
 		repository.save(e);
 		
 		assertEquals(1, repository.count());

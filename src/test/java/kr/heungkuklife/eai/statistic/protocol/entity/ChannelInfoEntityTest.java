@@ -9,7 +9,7 @@ public class ChannelInfoEntityTest {
 
 	@Test
 	public void convertJson() throws Exception {
-		ChannelInfoEntity entity = new ChannelInfoEntity(1, "channelId", "bocId", "1111");
+		ChannelInfoEntity entity = new ChannelInfoEntity(1L, "channelId", "bocId", "1111");
 		
 		ObjectMapper mapper = new ObjectMapper();
 	    mapper.enable(SerializationFeature.WRAP_ROOT_VALUE);

@@ -66,7 +66,7 @@
 				<div class="col-md-12">
 					<form class="m-t" role="form" action="javascript:search()">
 						<div class="form-group" class="col-md-4">
-							<input id="bocId" type="text" class="form-control" placeholder="BOC ID"
+							<input id="bocid" type="text" class="form-control" placeholder="BOC ID"
 								required="true">
 						</div>
 
@@ -177,16 +177,22 @@
 	*/
 	
 		function search(response) {
+			//console.log($("#bocid").text());
+			
+			var params = {};
+			params.bocid = $('#bocid').val();
+		
 			$.ajax({
 			    url:'http://localhost:8080/analysis/channels', // 요청 할 주소
 			    async:false,// false 일 경우 동기 요청으로 변경
 			    type:'GET', // GET, PUT
-			    data: {
-			        bocId:'ajax'
-			    },// 전송할 데이터
+			    async: false,
+			    data: params,// 전송할 데이터
 			    dataType:'json',// xml, json, script, html
 			    success:function(response){
-					search(response);
+			    	if(response != null) {
+			    		display(response);
+			    	}
 				},// 요청 완료 시
 			    error:function(response) {
 			    	alert("통신 오류 (" + response.statusText +")");
@@ -201,12 +207,9 @@
 					.parse('{"status":"OK","userResponse":["HHMAIN", "HKMSAOK"],"errorMessage":"","errorCode":""}');
 			*/
 			
-			var data = JSON.parse(response);
 			
-			console.log($("#bocId").text());
-			
-			if(data.userResponse != "") {
-				var length = data.userResponse.length;
+			if(response.userResponse != "") {
+				var length = response.userResponse.length;
 				// count 변경
 				$('.ibox-title').children('span').get(0).innerHTML = length;
 				
@@ -216,7 +219,7 @@
 				tbl.empty();
 				
 				for(var i=0 ;i<length ; i++) {
-					tbl.append("<tr><td>" + (i+1) + "</td><td>" + data.userResponse[i] + "</td></tr>");
+					tbl.append("<tr><td>" + (i+1) + "</td><td>" + response.userResponse[i] + "</td></tr>");
 				}
 				
 			} 

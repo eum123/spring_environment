@@ -13,7 +13,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import kr.heungkuklife.eai.statistic.protocol.entity.ChannelInfoEntity;
-import kr.heungkuklife.eai.statistic.protocol.service.ChannelInfoService;
+import kr.heungkuklife.eai.statistic.protocol.service.ChannelInfoServiceImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -22,11 +22,7 @@ public class ProtocolUsageRepositoryTest {
 	
 	@Autowired
 	private ProtocolUsageRepository repository;
-	
-	@Autowired
-	private ChannelInfoService service;
-	
-	
+
 	@Test
 	public void test() {
 		assertEquals(0, repository.count());

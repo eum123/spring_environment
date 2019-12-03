@@ -7,23 +7,29 @@ import java.util.Optional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import kr.heungkuklife.eai.statistic.protocol.entity.ChannelInfoEntity;
 
 @RunWith(SpringRunner.class)
-public class ChannelInfoServiceTest {
+@SpringBootTest
+@ActiveProfiles("dev")
+public class ChannelInfoServiceImplTest {
 
-	@MockBean
+	@Autowired
 	private ChannelInfoService service;
 	
 	@Test
 	public void test() {
 		Optional<List<ChannelInfoEntity>> list = service.searchChannelByBocId("111");	
 		
-		assertEquals(true, list.isEmpty());
+		assertEquals(false, list.isEmpty());
 		
-		System.out.println(list.get());
+		if(!list.isEmpty()) {
+			assertEquals(0, list.get().size());
+		}
 	}
 }
